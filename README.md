@@ -50,6 +50,21 @@ OR
 
 - 请参考[TimeBye/oneindex](https://github.com/TimeBye/oneindex)
 
+### 一库多站
+
+```ini
+; env.ini
+[www]
+port = '80'
+subdomain = 'www'
+
+[sub]
+port = '8080'
+subdomain = 'sub'
+```
+
+### 强制登录
+
 ## 特殊文件实现功能  
 
 `README.md`、`HEAD.md` 、 `.password`特殊文件使用

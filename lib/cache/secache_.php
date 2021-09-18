@@ -8,7 +8,7 @@ class secache_{
 		list($cachefile, $size) = explode(':', $config, 2);
 		
 		if(empty($cachefile)){
-			$cachefile = CACHE_PATH.'cachedata';
+			$cachefile = CACHE_PATH.'cachedata.'.env();
 		}
 
 		if(empty($size)){

@@ -41,7 +41,7 @@ route::any('/admin/', function () {
     return view::direct(get_absolute_path(dirname($_SERVER['SCRIPT_NAME'])) . '?/login');
 });
 
-if(config("force_login")){
+if (config("force_login")) {
     if ($_COOKIE['admin'] != md5(config('password') . config('refresh_token'))) {
         if ($_SERVER["REQUEST_URI"] != "/?/login") {
             return view::direct(get_absolute_path(dirname($_SERVER['SCRIPT_NAME'])) . "?/login");

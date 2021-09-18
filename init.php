@@ -25,11 +25,12 @@ spl_autoload_register('i_autoload');
  */
 if (!function_exists('config')) {
 	!defined('CONFIG_PATH') && define('CONFIG_PATH', ROOT . 'config/');
+	!defined('CONFIG_ENV_PATH') && define('CONFIG_ENV_PATH', ROOT . 'env.ini');
 	function config($key)
 	{
 		static $configs = array();
 		list($key, $file) = explode('@', $key, 2);
-		$file = empty($file) ? 'base' : $file;
+		$file = empty($file) ? 'base.' . env() : $file . "." . env();
 
 		$file_name = CONFIG_PATH . $file . '.php';
 		//读取配置
@@ -60,7 +61,6 @@ if (!function_exists('config')) {
 			if (!empty($key)) {
 				return $configs[$file][$key];
 			}
-
 			return $configs[$file];
 		}
 	}
@@ -149,6 +149,25 @@ function get_absolute_path($path)
 	return str_replace('//', '/', '/' . implode('/', $absolutes) . '/');
 }
 
+
+function env($key = null)
+{
+	$env_configs = parse_ini_file(CONFIG_ENV_PATH, true);
+	$sub = 'www';
+	foreach ($env_configs as $name => $value) {
+		if ($name == 'www') {
+			continue;
+		}
+		if ($value['port'] == $_SERVER['SERVER_PORT']) {
+			$sub = $name;
+		}
+	}
+	if (is_null($key)) {
+		return $sub;
+	} else {
+		return $env_configs[$sub][$key];
+	}
+}
 !defined('CONTROLLER_PATH') && define('CONTROLLER_PATH', ROOT . 'controller/');
 onedrive::$client_id = config('client_id');
 onedrive::$client_secret = config('client_secret');
