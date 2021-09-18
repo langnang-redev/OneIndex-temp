@@ -63,6 +63,8 @@ port = '8080'
 subdomain = 'sub'
 ```
 
+### 强制登录
+
 ## 特殊文件实现功能  
 
 `README.md`、`HEAD.md` 、 `.password`特殊文件使用
