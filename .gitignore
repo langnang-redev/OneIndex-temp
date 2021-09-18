@@ -7,4 +7,3 @@
 /.vscode
 /.idea
 /cli/*.log
-env.ini
