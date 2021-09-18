@@ -1,6 +1,10 @@
 /cache/cachedata.php
+/cache/cachedata.*.php
 /config/token.php
+/config/token.*.php
 /config/base.php
+/config/base.*.php
 /.vscode
 /.idea
 /cli/*.log
+env.ini
